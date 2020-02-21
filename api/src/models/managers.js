@@ -5,7 +5,8 @@ module.exports = (sequelize, types) =>
     "employees",
     {
       id: {
-        type: types.INTEGER
+        type: types.INTEGER,
+        primaryKey: true
       },
       account: {
         type: types.INTEGER
@@ -32,7 +33,7 @@ module.exports = (sequelize, types) =>
         type: types.ENUM("COMPANY", "STATE", "LOCATION")
       },
       password: {
-        type: DataTypes.STRING(64),
+        type: types.STRING(64),
         validate: {
           is: /^[0-9a-f]{64}$/i
         }

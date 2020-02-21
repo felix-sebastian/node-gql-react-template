@@ -5,7 +5,8 @@ module.exports = (sequelize, types) =>
     "employeePerms",
     {
       id: {
-        type: types.INTEGER
+        type: types.INTEGER,
+        primaryKey: true
       },
       name: {
         type: types.STRING

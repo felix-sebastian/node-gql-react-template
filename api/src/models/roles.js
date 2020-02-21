@@ -5,7 +5,8 @@ module.exports = (sequelize, types) => {
     "roles",
     {
       id: {
-        type: types.INTEGER
+        type: types.INTEGER,
+        primaryKey: true
       },
       name: {
         type: types.STRING
@@ -19,14 +20,14 @@ module.exports = (sequelize, types) => {
     }
   );
 
-  result.associate(role => {
-    role.belongsToMany(models.employees, {
+  result.associate = models => {
+    result.belongsToMany(models.employees, {
       through: "employeeRoles",
       as: "employees",
       foreignKey: "role",
       otherKey: "employee"
     });
-  });
+  };
 
   return result;
 };

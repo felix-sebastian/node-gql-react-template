@@ -5,7 +5,8 @@ module.exports = (sequelize, types) => {
     "employees",
     {
       id: {
-        type: types.INTEGER
+        type: types.INTEGER,
+        primaryKey: true
       },
       account: {
         type: types.INTEGER
@@ -29,7 +30,7 @@ module.exports = (sequelize, types) => {
         }
       },
       password: {
-        type: DataTypes.STRING(64),
+        type: types.STRING(64),
         validate: {
           is: /^[0-9a-f]{64}$/i
         }
@@ -50,7 +51,10 @@ module.exports = (sequelize, types) => {
         type: types.BOOLEAN
       },
       notes: {
-        type: types.STRING
+        type: types.STRING,
+        validate: {
+          len: [0, 150]
+        }
       },
       startDate: {
         type: types.DATE
@@ -91,21 +95,21 @@ module.exports = (sequelize, types) => {
     }
   );
 
-  result.associate(employee => {
-    employee.hasMany(models.roles, {
+  console.log(typeof result);
+
+  sequelize.associate = models => {
+    result.hasMany(models.roles, {
       through: "employeeRoles",
       as: "roles",
       foreignKey: "employee",
       otherKey: "role"
     });
-  });
 
-  result.associate(employee => {
-    employee.belongsTo(models.employeePerms, {
+    result.belongsTo(models.employeePerms, {
       as: "permissions",
       foreignKey: "permission"
     });
-  });
+  };
 
   return result;
 };
