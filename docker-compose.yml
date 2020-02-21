@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./web:/app"
+  api:
+    build: ./api
+    ports:
+      - "4000:4000"
+    volumes:
+      - "./api:/app"
+    environment:
+      - DB_USERNAME=dev
+      - DB_HOST=rdb
+      - DB_PASSWORD=dev
+      - DB_DATABASE=app
+      - DB_PORT=5432
+      - JWT_SECRET=xS2T22oigo9PIJ9dfW
+      - GRAPGQL_PORT=4000
+  rdb:
+    image: postgres:11
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./temp/pg:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5555:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dev
+      - PGADMIN_DEFAULT_PASSWORD=dev

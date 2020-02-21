@@ -1,0 +1,31 @@
+{
+  "name": "resin-api",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "setup": "npm run-script create-db && npm run-script migrate && npm run-script seed ",
+    "create-db": "sequelize db:create --url postgres://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_DATABASE",
+    "migrate": "sequelize db:migrate --url postgres://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_DATABASE --seeders-path ./src/scripts/seeders --migrations-path ./src/migrations --models-path ./src/--migrations-path ./src/migrations",
+    "unmigrate": "sequelize db:migrate:undo:all --url postgres://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_DATABASE --seeders-path ./src/scripts/seeders --migrations-path ./src/migrations --models-path ./src/--migrations-path ./src/migrations",
+    "seed": "sequelize db:seed:all --url postgres://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_DATABASE --seeders-path ./src/scripts/seeders --migrations-path ./src/migrations --models-path ./src/--migrations-path ./src/migrations",
+    "unseed": "sequelize db:seed:undo:all --url postgres://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_DATABASE --seeders-path ./src/scripts/seeders --migrations-path ./src/migrations --models-path ./src/--migrations-path ./src/migrations",
+    "start": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.9.3",
+    "body-parser": "^1.19.0",
+    "core-js": "^3.2.1",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-tools": "^4.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.4.3",
+    "pgtools": "^0.3.0",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "5.4.0"
+  }
+}
