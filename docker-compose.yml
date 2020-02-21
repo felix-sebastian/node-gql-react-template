@@ -18,6 +18,8 @@ services:
       - DB_PASSWORD=dev
       - DB_DATABASE=app
       - DB_PORT=5432
+      - AWS_ACCESS_KEY_ID=
+      - AWS_ACCESS_KEY_SECRET=
       - JWT_SECRET=xS2T22oigo9PIJ9dfW
       - GRAPGQL_PORT=4000
   rdb:

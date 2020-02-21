@@ -202,5 +202,5 @@ module.exports = {
         allowNull: false
       }
     }),
-  down: qi => qi.dropTable("employeePerms")
+  down: qi => Promise.all([qi.dropTable("employeePerms")])
 };

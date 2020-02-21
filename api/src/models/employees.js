@@ -21,7 +21,10 @@ module.exports = (sequelize, types) => {
         type: types.STRING
       },
       mobile: {
-        type: types.STRING
+        type: types.STRING,
+        validate: {
+          is: /^\[1-9]{1}[0-9]{3,14}$/i
+        }
       },
       email: {
         type: types.STRING,
@@ -39,7 +42,7 @@ module.exports = (sequelize, types) => {
         type: types.DATE
       },
       gender: {
-        type: types.ENUM("Male", "Female")
+        type: types.ENUM("MALE", "FEMALE", "UNDISCLOSED")
       },
       notifyMobile: {
         type: types.BOOLEAN
@@ -94,8 +97,6 @@ module.exports = (sequelize, types) => {
       freezeTableName: true
     }
   );
-
-  console.log(typeof result);
 
   sequelize.associate = models => {
     result.hasMany(models.roles, {

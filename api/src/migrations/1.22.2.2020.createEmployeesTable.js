@@ -42,8 +42,9 @@ module.exports = {
         allowNull: true
       },
       gender: {
-        type: types.ENUM("Male", "Female"),
-        allowNull: true
+        type: types.ENUM("MALE", "FEMALE", "UNDISCLOSED"),
+        allowNull: false,
+        defaultValue: "UNDISCLOSED"
       },
       notifyMobile: {
         type: types.BOOLEAN,

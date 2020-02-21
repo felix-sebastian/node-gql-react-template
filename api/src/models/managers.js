@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, types) =>
   sequelize.define(
-    "employees",
+    "managers",
     {
       id: {
         type: types.INTEGER,
