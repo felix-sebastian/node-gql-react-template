@@ -2,20 +2,25 @@
 
 module.exports = {
   up: (qi, types) =>
-    qi.createTable("cars", {
+    qi.createTable("employeeRole", {
       id: {
         type: types.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
       },
-      make: {
-        type: types.ENUM("Holden", "Ford"),
+      employee: {
+        type: types.INTEGER,
         allowNull: false
       },
-      topSpeed: {
-        type: types.FLOAT,
+      role: {
+        type: types.INTEGER,
         allowNull: false
+      },
+      skillLevel: {
+        type: types.INTEGER,
+        allowNull: false,
+        defaultValue: 3
       },
       createdAt: {
         type: types.DATE,
@@ -26,5 +31,5 @@ module.exports = {
         allowNull: false
       }
     }),
-  down: qi => qi.dropTable("cars")
+  down: qi => qi.dropTable("employeeRole")
 };
