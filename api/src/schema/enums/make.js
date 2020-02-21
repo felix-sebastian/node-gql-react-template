@@ -1,7 +1,8 @@
 "use strict";
 module.exports = `
-  enum Make {
-    Holden
-    Ford
+  enum Gender {
+    Mail
+    Female
+    Undisclosed
   }
 `;
